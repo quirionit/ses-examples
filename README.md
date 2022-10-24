@@ -1,14 +1,29 @@
-# Welcome to your CDK TypeScript project
+# @quirionit/ses-examples
 
-This is a blank project for CDK development with TypeScript.
+*@quirionit/ses-examples* provides examples for @quirionit/ses that provides an extensions to AWS SES such as an API to create nested templates and an extension to send attachments.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Getting Started
 
-## Useful commands
+For using the examples clone the repository
+```bash
+$ git clone git@github.com:quirionit/ses-examples.git
+```
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+for *SesTemplateApi*
+```bash
+$ cd ses-examples/projects/template-api
+$ npm install
+$ cdk deploy
+```
+
+for *SesTemplateEmailSender*
+```bash
+$ cd ses-examples/projects/email-sender
+$ npm install
+$ cdk deploy
+```
+
+to delete the created services
+```bash
+$ cdk destroy
+```
