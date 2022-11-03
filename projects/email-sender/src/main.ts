@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import {EventBus} from "aws-cdk-lib/aws-events";
 import {Bucket} from "aws-cdk-lib/aws-s3";
 import {SesTemplateEmailSender} from "@quirionit/ses";
+const { createHash } = require('crypto');
 
 export class EmailSenderStack extends Stack {
     constructor(scope: Construct, id: string, props: StackProps = {}) {
@@ -13,10 +14,12 @@ export class EmailSenderStack extends Stack {
             eventBusName: 'emailSenderEventBus',
         });
 
+        const bucketId = createHash('md5').update(this.account).digest('hex');
+
         // Create a S3 bucket to store the documents to be attached to the emails
         const bucket = new Bucket(this, `${id}-SesDocumentBucket`, {
             versioned: false,
-            bucketName: `ses-documents-${scope.node.addr}`,
+            bucketName: `ses-documents-${bucketId}`,
             removalPolicy: RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
         });
